@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/f00505b305.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        .parent{
+            width: 880px;
+            margin: 0 auto;
+            border: 1px red solid;
+        }
+        .child{
+            width: 30%;
+            margin: 0 auto;
+            border: 1px blue solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="parent">
+        <emit-test @custom-event="parentMethod" class="child"></emit-test>
+    </div>
+
+    <script>
+        let emitTest = {
+            template:
+            `<div>
+                <button @click=childMethod>child-button</button>    
+            </div>`,
+            methods:{
+                childMethod(){
+                    this.$emit('custom-event', 'child-no-value');
+                }
+            }
+        }
+        let app = new Vue({
+            el: '#app',
+            components: {
+                emitTest
+            }, 
+            data(){ 
+                return{
+                    
+                }
+            },
+            methods: {
+                parentMethod(e){
+                    console.log(e);
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

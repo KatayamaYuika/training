@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{totalPriceMethods()}}
+        {{totalPriceMethods()}}
+
+        {{totalPrice}}  <!--totalPrice()ではない-->
+        {{totalPrice}}  <!--こちらはdataの値が変わらない限りこのように書いても実行されない-->
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app', 
+            data(){ 
+                return{
+                    price: 1,
+                    number: 1,
+                    reactiveTest: {
+                        name: 'test'
+                    },
+                    books: [
+                    {
+                        id: 1,
+                        title: 'title1',
+                        author: 'name1',
+                        url: 'https://google.com'
+                    },
+                    {
+                        id: 2,
+                        title: 'title2',
+                        author: 'name2',
+                        url: 'https://google.com'
+                    },
+                    {
+                        id: 3,
+                        title: 'title3',
+                        author: 'name3',
+                        url: 'https://google.com'
+                    }
+                  ]
+                }
+            },
+            methods: {
+                totalPriceMethods(){
+                    console.log('method');
+                    return this.number * this.price;
+                }
+            },
+            computed: { //必ずreturn で返す
+                // totalPrice(){
+                //     console.log('computed');
+                //     return this.number * this.price;
+                // }
+                //上の内容を短くして書く
+                totalPrice: app => app.number * app.price
+
+                
+            },
+            watch: {
+                books:{
+                    handler(){
+                        console.log("更新されました");
+                    },
+                    deep: true
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

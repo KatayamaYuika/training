@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="btnclicked">クリック</button>
+        <button @click="btnclicked">クリック</button>
+        <button @click="btnClickedEvent">Event</button>
+        <button @click="btnClickedArgs(1)">Click</button>
+        <button @click="btnClickedArgsEvent(1, $event)">引数イベント</button> <!--普通の引数とイベントを一緒にする場合はイベントに$をつける-->
+        <!-- <button @click.prevent...></button> のように.preventをつけるとpreventDefault(もともとの動作を無視するやつ)-->
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app', 
+            data(){ 
+                return{
+                    
+                }
+            },
+            methods: {
+                btnclicked(){
+                    console.log('vue_click');
+                },
+                btnClickedEvent(e){
+                    console.log(e);
+                },
+                btnClickedArgs(int){
+                    console.log(int);
+                },
+                btnClickedArgsEvent(int, e){
+                    console.log(int,e);
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

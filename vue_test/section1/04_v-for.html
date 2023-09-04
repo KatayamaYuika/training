@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        配列{value}
+        <li v-for="member in members">
+            {{member}}
+        </li>
+
+        配列(value, index)
+        <li v-for="(member, index) in members">
+           {{index}}:{{member}}
+        </li>
+
+        オブジェクト(value)
+        <li v-for="value in book">
+            {{value}}
+        </li>
+ 
+        オブジェクト(value, key)
+        <li v-for="(value, key) in book">
+            {{key}}:{{value}}
+        </li>
+ 
+        オブジェクト(value, key, inedx)
+        <li v-for="(value, key, index) in book">
+            {{index}}:{{key}}:{{value}}
+        </li>
+
+        複数のオブジェクト
+        v-for="book in books"の後に:key="book.id"のようにユニークなキーを設定することで表をあとから編集することができる
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>タイトル</th>
+                    <th>著者</th>
+                    <th>url</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="book in books" :key="book.id">
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.url}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app', 
+            data(){ 
+                return{
+                  members: ['p1', 'p2', 'p3'],
+                  book: {
+                    title: 'title',
+                    author: 'name',
+                    url: 'https://google.com'
+                  },
+                  books: [
+                    {
+                        id: 1,
+                        title: 'title1',
+                        author: 'name1',
+                        url: 'https://google.com'
+                    },
+                    {
+                        id: 2,
+                        title: 'title2',
+                        author: 'name2',
+                        url: 'https://google.com'
+                    },
+                    {
+                        id: 3,
+                        title: 'title3',
+                        author: 'name3',
+                        url: 'https://google.com'
+                    }
+                  ]
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

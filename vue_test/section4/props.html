@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/f00505b305.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        .parent{
+            width: 880px;
+            margin: 0 auto;
+            border: 1px red solid;
+        }
+        .child{
+            width: 30%;
+            margin: 0 auto;
+            border: 1px blue solid;
+        }    
+    </style>
+</head>
+<body>
+    <div id="app" class="parent">
+        <my-component title="test" class="child"></my-component>
+        <my-component :title="parentTitle" class="child"></my-component>
+        <my-component disabled class="child"></my-component>
+    </div>
+
+    <script>
+        let myComponent = {
+            template:`<div>
+                    aaaa
+                    {{getTitle}}
+                    <div v-show="isShow">表示</div>
+                </div>`,
+            props: {
+               title: {
+                type: String
+               },
+               disabled: {
+                type: Boolean,
+                default: false
+               } 
+            },
+            data(){
+                return {
+                    isShow: false,
+                    getTitle: this.title
+                }
+            }
+        }
+        let app = new Vue({
+            el: '#app', 
+            components: {
+                'my-component': myComponent
+                //単にキーとバリューが等しい場合(上の場合も等しいと判定される)、単に
+                //mtComponent　と書くだけでも良い
+            },
+            data(){ 
+                return{
+                    parentTitle: 'parent-no-title'
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
