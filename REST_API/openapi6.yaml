@@ -1,0 +1,20 @@
+openapi: "3.0.3"
+
+info: 
+  title: "Shop Review API"
+  version: "1.0.0"
+
+servers:
+  - url: "https://localhost:{port}"
+    description: "local development"
+    variables:
+      port: 
+        enum: ["3000", "8000"]
+        default: "3000"
+  - url: "https://it1.tastylog.com"
+    description: "Integration Test"
+  - url: "https://stg.tastylog.com"
+    description: "Staging"
+  - url: "https://api.tastylog.com"
+    description: "Production"
+paths: {}

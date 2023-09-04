@@ -1,0 +1,20 @@
+openapi: "3.0.3"
+
+info: 
+  title: "Shop Review API"
+  description: |
+    # Features
+    - Get Reviews
+    - Post Reviews
+  termsOfService: "https://tastylog.com/terms/"
+  contact: 
+    name: "Customer Support"
+    url: "https://tastylog.com/support"
+    email: "support-desl@tastylog.com"
+  license: 
+    name: "MIT License"
+    url: "https://opensource.org/licenses/MIT"
+  version: "1.0.0"
+
+
+paths: {}

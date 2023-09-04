@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function aTest1(){
+            return '非同期関数1'; //Promiseが返り値となる
+        }
+
+        console.log(aTest1());
+
+        async function aTest2(){
+            console.log(1);
+            await waiting(2);
+            console.log(3);
+        }
+
+        aTest2();
+    </script>
+</body>
+</html>

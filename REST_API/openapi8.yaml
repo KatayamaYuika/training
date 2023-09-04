@@ -1,0 +1,30 @@
+openapi: "3.0.3"
+
+info: 
+  title: "Shop Review API"
+  version: "1.0.0"
+
+paths:
+  "/shops/{shopId}/reviews":
+    post:
+      summary: "Create review"
+      parameters:
+      - name: shopId
+        in: path
+        required: true
+        schema: {type: string}
+        example: "abcdefg"
+      - name: x-Api-Key
+        in: header
+        description: "Request user's identifer"
+        schema: {type: string}
+        example: "xxxx-xxxx-xxxx-xxxx"
+      - name: token
+        in: cookie
+        description: "One time token"
+        schema: {type: string}
+        example: "xxxx-xxxx-xxxx-xxxx"
+      responses: 
+        "201":
+          description: "Success opperation"
+          

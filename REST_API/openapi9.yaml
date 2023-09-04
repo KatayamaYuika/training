@@ -1,0 +1,29 @@
+openapi: "3.0.3"
+
+
+info: 
+  title: "Shop Review API"
+  version: "1.0.0"
+
+paths:
+  "/shops/{shopId}/revies":
+    post:
+      summary: "Create review"
+      parameters: 
+        - name: shopId
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        "201":
+          description: "Success Operation"
+      requestBody:
+        description: "Contents of review"
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties: 
+                score: {type: integer, example: 3}
+                comment: {type: string, example: "oisii"}

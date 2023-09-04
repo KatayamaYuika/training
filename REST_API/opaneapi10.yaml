@@ -1,0 +1,49 @@
+openapi: "3.0.3"
+
+info: 
+  title: "Shop RFeview API"
+  vertion: "1.0.0"
+
+
+paths:
+  "/shops/{shopId}/revies": 
+    post:
+      summary: "create review"
+      parameters:
+        - name: shopId
+          in: path
+          required: true
+          schema: {type: string}
+      requestBody:
+        description: "Contents of revies"
+        required: true
+        content: 
+          application/json:
+          schema:
+            type: object
+            properties:
+              score: {type: integer}
+              comment: {type: string}
+      responses: 
+        "201":
+          description: "Success Operation"
+          headers: 
+            location: 
+              description: "New URL of created review"
+              schema: {type: string, format: url}
+        "400":
+          description: "Client side error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code: {}
+                  type: {}
+                  message: {type: string}
+                  errors: 
+                    type: array
+                    properties: 
+                      field: {type: string}
+                      code: {type: string}
+                    

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .w300{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="image" class="w300"></div>
+
+    <script>
+        url = 'https://dog.ceo/api/breeds/image/random';
+        //短期間に集中アクセスはNG。２～３秒開ける
+        const options = {
+            method: 'GET'
+        };
+        //const fetchTest1 = fetch(url, options);
+        //console.log(fetchTest1);
+        //返り値はPromiseであり、この状態では中身が確認できない
+
+        //APIがJSONで取得できるなら.jsonでpurse
+        const fetchTest2 = fetch(url, options).then(response => response.json());
+        console.log(fetchTest2);
+
+        //上の状態ではデータ取得前に表示しようとする場合あり
+
+        //データの取得を待ってから表示
+        function getDogImage(url, options){
+            return fetch(url, options)
+            .then(response => {
+                console.log(response.ok);
+                console.log(response.status);
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error');
+            }).catch(e => console.log(e.message));
+                
+        }
+
+        async function getImage(url, options){
+            const response = await getDogImage(url, options);
+            console.log(response.message);
+            const imageDiv = document.getElementById('image');
+            const imageElement = document.createElement('img');
+            imageElement.src = response.message;
+            //document.body.appendChild(imageElement);
+            imageDiv.appendChild(imageElement);
+        }
+
+        getImage(url, options);
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" id="history">戻る</button>
+    <script>
+        // window.addEventListener('load', () => {
+        //     location.href = 'https://google.com'; //setTimeoutなどを組み合わせるとn秒後にジャンプが実現
+        // })
+        
+        console.log(location.href);
+        console.log(location.search);
+
+        document.getElementById('history').addEventListener('click', () => {
+            history.back();
+        })
+    </script>
+</body>
+</html>
